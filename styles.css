@@ -27,6 +27,10 @@ body{
     padding : 32px
 }
 
-.main-display-container{
+#main-display-container{
     flex : 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
