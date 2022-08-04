@@ -1,12 +1,20 @@
-function displayBookDetails (bookCard){
-    
-    // let testParent = document.createElement("Div");
-    // let til
-    // displayContainerDom.appendChild(testParent);
-
-    // testParent.textContent = book.pages;
-    // displayContainerDom.appendChild(testParent);
+function displayBookCard(bookCard){
     displayContainerDom.appendChild(bookCard);
+}
+
+function printHello(){
+    console.log(this.classList[0]);
+}
+
+function removeCardFromDom(){
+    let card = document.getElementById(this.id).parentNode;
+    console.log(card);
+    card.remove();
+}
+
+function createRemoveButtonEventListener(btnId){
+    let removeBtn = document.getElementById(btnId);
+    removeBtn.addEventListener('click',removeCardFromDom);
 }
 
 function createBookCard(book){
@@ -27,13 +35,15 @@ function createBookCard(book){
 
     let removeButton = document.createElement("button")
     removeButton.textContent = "Delete";
-    removeButton.classList.add("rmv-btn");
+    removeButton.id = book.title + "-rmv-btn"
     removeButton.classList.add(book.title);
+    removeButton.classList.add("rmv-btn");
+    
+
+
     mainCardDom.appendChild(removeButton);
-
-
-    console.log(typeof mainCardDom)
-    displayBookDetails(mainCardDom);    
+    displayBookCard(mainCardDom);  
+    createRemoveButtonEventListener(book.title + "-rmv-btn");   
 }
 
 
@@ -43,32 +53,24 @@ function addBookToLibrary(book){
 
 function book(title, author,pages, read){
 
-    console.log(this);  
+    // console.log(this);  
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 
     addBookToLibrary(this)   
+    createBookCard(this);
 }
 
 let library = [];
+let removeBtnsListener = [];
+const displayContainerDom = document.getElementById("main-display-container");
 
 const book1 = new book("HP","JK",455,true);
 const book2 = new book("TT","JK",455,false);  
 
 const addBtn = document.getElementById("add-btn");
-//addBtn.addEventListener('click',displayBookDetails);
 
-
-
-const deleteBtn = document.getElementsByClassName("rmv-btn");
-
-
-const displayContainerDom = document.getElementById("main-display-container");
-
-
-library.forEach(book => {
-    createBookCard(book);
-});
-
+console.log(library[1].title);
+console.log(removeBtnsListener);
