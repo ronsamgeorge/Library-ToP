@@ -1,15 +1,25 @@
-function displayBookCard(bookCard){
-    displayContainerDom.appendChild(bookCard);
-}
 
 function printHello(){
     console.log(this.classList[0]);
+}
+
+function removeCardFromLibrary(titleId){
+
+    for(let i = 0; i< library.length; i++){ 
+        if (titleId === library[i].title){
+            library.splice(i,1);
+            break;
+        }
+    }
+    return; 
 }
 
 function removeCardFromDom(){
     let card = document.getElementById(this.id).parentNode;
     console.log(card);
     card.remove();
+    removeCardFromLibrary(this.classList[0]); // classlist[0] contains the Title of the book as Class.
+    
 }
 
 function createRemoveButtonEventListener(btnId){
@@ -17,12 +27,11 @@ function createRemoveButtonEventListener(btnId){
     removeBtn.addEventListener('click',removeCardFromDom);
 }
 
-function createBookCard(book){
-    //right logic to append things to the Card 
+function displayBookCard(bookCard){
+    displayContainerDom.appendChild(bookCard);
+}
 
-    /* So there will be four parts 
-        the parent div should have an id which we can refer to 
-    */
+function createBookCard(book){
 
     let mainCardDom = document.createElement("div");
     mainCardDom.classList.add(book.title);
@@ -31,6 +40,10 @@ function createBookCard(book){
         let bookInfo = document.createElement("div");
         bookInfo.textContent = keys + " " + book[keys];
         mainCardDom.appendChild(bookInfo);
+
+        if (book[keys] === true){
+            console.log("read book " + book.title);
+        }
     }
 
     let removeButton = document.createElement("button")
@@ -51,24 +64,25 @@ function addBookToLibrary(book){
     library.push(book);
 }
 
+//constructor for Books
 function book(title, author,pages, read){
-
-    // console.log(this);  
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 
-    addBookToLibrary(this)   
-    createBookCard(this);
+    addBookToLibrary(this);  
+    createBookCard(this); //Book Card displays the Book details on the UI
 }
 
-let library = [];
+let library = []; 
 let removeBtnsListener = [];
 const displayContainerDom = document.getElementById("main-display-container");
 
 const book1 = new book("HP","JK",455,true);
 const book2 = new book("TT","JK",455,false);  
+const book3 = new book("GOT","JK",455,true);
+const book4 = new book("HABIT","JK",455,false);  
 
 const addBtn = document.getElementById("add-btn");
 
