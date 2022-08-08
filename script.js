@@ -35,6 +35,7 @@ function createBookCard(book){
 
     let mainCardDom = document.createElement("div");
     mainCardDom.classList.add(book.title);
+    mainCardDom.classList.add("book-card");
 
     for (const keys in book){
         let bookInfo = document.createElement("div");
@@ -75,6 +76,17 @@ function book(title, author,pages, read){
     createBookCard(this); //Book Card displays the Book details on the UI
 }
 
+
+// code to capture the form data and save it locally in the array 
+
+function showForm(){
+    modal.showModal();
+}
+
+function closeForm(){
+    modal.close();
+}
+
 let library = []; 
 let removeBtnsListener = [];
 const displayContainerDom = document.getElementById("main-display-container");
@@ -84,7 +96,14 @@ const book2 = new book("TT","JK",455,false);
 const book3 = new book("GOT","JK",455,true);
 const book4 = new book("HABIT","JK",455,false);  
 
+const modal = document.querySelector("#modal");   //targets the pop up dialog form modal 
 const addBtn = document.getElementById("add-btn");
+const closeBtn = document.querySelector("#close-button");
+
+
+addBtn.addEventListener('click',showForm);
+closeBtn.addEventListener('click', closeForm);
+
 
 console.log(library[1].title);
 console.log(removeBtnsListener);
