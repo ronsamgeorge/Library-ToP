@@ -74,6 +74,7 @@ function book(title, author,pages, read){
 
     addBookToLibrary(this);  
     createBookCard(this); //Book Card displays the Book details on the UI
+    console.log("here");
 }
 
 
@@ -87,23 +88,44 @@ function closeForm(){
     modal.close();
 }
 
+function submitForm(){
+
+      let bookTitle = document.getElementById("book-title").value;
+      let bookAuthor = document.getElementById("book-author").value;
+      let bookPages = document.getElementById("book-pages").value;
+      let bookRead = document.querySelector("input[type=radio][name=read-book]:checked").value
+    
+      let newBook = new book(bookTitle,bookAuthor,bookPages,bookRead);
+
+    console.log(bookTitle);
+    console.log(bookAuthor);
+    console.log(bookPages);
+    console.log(bookRead);
+    console.log(library);
+    form.reset();
+    modal.close();
+}
+
 let library = []; 
 let removeBtnsListener = [];
 const displayContainerDom = document.getElementById("main-display-container");
 
 const book1 = new book("HP","JK",455,true);
-const book2 = new book("TT","JK",455,false);  
-const book3 = new book("GOT","JK",455,true);
-const book4 = new book("HABIT","JK",455,false);  
+// const book2 = new book("TT","JK",455,false);  
+// const book3 = new book("GOT","JK",455,true);
+// const book4 = new book("HABIT","JK",455,false);  
 
 const modal = document.querySelector("#modal");   //targets the pop up dialog form modal 
 const addBtn = document.getElementById("add-btn");
 const closeBtn = document.querySelector("#close-button");
+const form = document.querySelector("#book-form");
+
+
 
 
 addBtn.addEventListener('click',showForm);
 closeBtn.addEventListener('click', closeForm);
+form.addEventListener('submit',submitForm);
 
 
-console.log(library[1].title);
-console.log(removeBtnsListener);
+//console.log(removeBtnsListener);

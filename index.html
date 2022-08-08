@@ -23,19 +23,34 @@
         <form action="#" id="book-form" onsubmit="return false">
 
             <div class="form-element">
-                <label for="book-title">Book</label>
+                <label for="book-title">Book *</label>
                 <input type="text" id="book-title" name="book-title" placeholder="Book Title" required>
             </div>
 
             <div class="form-element">
-                <label for="book-author">Author</label>
+                <label for="book-author">Author *</label>
                 <input type="text" id="book-author" name="book-author" placeholder="Author Name" required>
             </div>
 
             <div class="form-element">
-                <label for="book-pages">Total Pages</label>
+                <label for="book-pages">Total Pages *</label>
                 <input type="text" id="book-pages" name="book-pages" placeholder="Number of Pages" required>
             </div>
+
+            <div>
+                <input
+                  type="radio"
+                  id="read"
+                  name="read-book"
+                  value="true"
+                  required
+                />
+                <label for="read">Read</label>
+      
+                <input type="radio" id="unread" name="read-book" value="false" />
+                <label for="unread">Unread</label>
+            </div>
+      
 
             <div>
                 <input type="submit" value="ADD" id="add-button" />
